@@ -11,10 +11,7 @@ import net.spy.memcached.MemcachedClient;
 import org.activiti.engine.impl.util.json.JSONObject;
 import org.activiti.engine.impl.util.json.JSONTokener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-
-@Component("WeixinRequest")
 public class WeixinRequest {
 
 	private static String APPID = "wxdf4ac816c369227c";

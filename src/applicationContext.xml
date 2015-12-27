@@ -27,11 +27,11 @@
 	<!-- 载入MySql配置 文件-->
 	<context:property-placeholder location="classpath:config.properties" />
 	
-	<bean id="mysql" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="${jdbc_driverClassName}" />
-		<property name="url" value="${jdbc_url}" />
-		<property name="username" value="${jdbc_username}" />
-		<property name="password" value="${jdbc_password}" />
+	<bean id="TMSDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
 	</bean>
 	
 	<!-- 用户库Spring-Mybatis整合 -->
@@ -88,6 +88,6 @@
 	</bean>
 	
 	<context:component-scan base-package="com.srbtj.weixin.service" />
-	
+
 
 </beans>
