@@ -1,5 +1,7 @@
 package com.srbtj.weixin.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +32,16 @@ public class WeiXinController {
 		}
 		
 	}
-	
+
+	/***
+	 *  处理微信服务器发来的消息
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/weixin",method = RequestMethod.POST)
+	@ResponseBody
+	public String weixin(HttpServletRequest request){
+		return null;
+	}
 	
 }

@@ -65,7 +65,7 @@ public class SignUtil {
 	 *  获得随机字符串
 	 * @return
 	 */
-	private static String sign_nonstr(){
+	public static String sign_nonstr(){
 		
 		return UUID.randomUUID().toString();
 	}
@@ -74,7 +74,7 @@ public class SignUtil {
 	 *  获得时间截
 	 * @return
 	 */
-	private static String sign_timerstamp(){
+	public static String sign_timerstamp(){
 		
 		return Long.toString(System.currentTimeMillis());
 	}
