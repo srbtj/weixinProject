@@ -7,15 +7,29 @@ http://www.springframework.org/schema/mvc
 http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 	<!-- 加载静态资源  .do结尾的不需要加载 -->
-	<!-- <mvc:resources location="/images/" mapping="/images/**"/> -->
-	<!-- <mvc:resources location="/js/" mapping="/js/**"/> -->
-	<!-- <mvc:resources location="/css/" mapping="/css/**"/> -->
+	<mvc:resources location="/img/" mapping="/img/**"/>
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	
 	
     <!-- 启用spring_mvc 注解 -->
 	<context:annotation-config />
 	<!-- 开启事务注解驱动 --> 
+<!-- 	<bean id="utf8Charset" class="java.nio.charset.Charset" -->
+<!--           factory-method="forName"> -->
+<!--         <constructor-arg value="UTF-8"/> -->
+<!--     </bean> -->
+
+<!--     <mvc:annotation-driven> -->
+<!--         <mvc:message-converters> -->
+<!--             <bean class="org.springframework.http.converter.StringHttpMessageConverter"> -->
+<!--                 <constructor-arg ref="utf8Charset"/> -->
+<!--             </bean> -->
+<!--         </mvc:message-converters> -->
+<!--     </mvc:annotation-driven> -->
+<!-- 	<mvc:annotation-driven/> -->
 	<mvc:annotation-driven/>
-	
+
 	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
 	<context:component-scan base-package="com.srbtj.weixin.controller" />
 	
@@ -36,6 +50,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 <!-- 		</property> -->
 <!-- 	</bean> -->
 	
+	
+
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
