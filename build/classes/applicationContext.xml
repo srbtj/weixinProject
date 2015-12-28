@@ -21,19 +21,14 @@
 	<!-- 开启注解配置 -->  
     <context:annotation-config />  
      
-    <mvc:annotation-driven>  
-        <mvc:message-converters>  
-            <bean class="com.srbtj.weixin.util.Utf8StringHttpMessageConverter" />  
-        </mvc:message-converters>  
-    </mvc:annotation-driven>
     <!-- 返回字符串时 中文乱码的解决方法   -->  
-<!--  	<mvc:annotation-driven>  -->
-<!--  	     <mvc:message-converters register-defaults="true"> -->
-<!--  	    <bean class="org.springframework.http.converter.StringHttpMessageConverter">  -->
-<!--  	      <property name="supportedMediaTypes" value = "text/plain;charset=UTF-8" />  -->
-<!--  	    </bean> -->
-<!--  	   </mvc:message-converters> -->
-<!--      </mvc:annotation-driven>  -->
+ 	<mvc:annotation-driven> 
+ 	     <mvc:message-converters register-defaults="true">
+ 	    <bean class="org.springframework.http.converter.StringHttpMessageConverter"> 
+ 	      <property name="supportedMediaTypes" value = "text/plain;charset=UTF-8" /> 
+ 	    </bean>
+ 	   </mvc:message-converters>
+     </mvc:annotation-driven> 
       
 <!--     <bean id="utf8Charset" class="java.nio.charset.Charset"   -->
 <!--         factory-method="forName">   -->

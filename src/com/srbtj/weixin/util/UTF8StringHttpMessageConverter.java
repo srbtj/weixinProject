@@ -12,18 +12,19 @@ import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.AbstractHttpMessageConverter;
+import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
-public class Utf8StringHttpMessageConverter extends
-		AbstractHttpMessageConverter<String> {
-
-	public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");  
+@Component
+public class UTF8StringHttpMessageConverter extends AbstractHttpMessageConverter<String> {  
 	  
+    public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");  
+  
     private final List<Charset> availableCharsets;  
   
     private boolean writeAcceptCharset = true;  
   
-    public Utf8StringHttpMessageConverter() {  
+    public UTF8StringHttpMessageConverter() {  
         super(new MediaType("text", "plain", DEFAULT_CHARSET), MediaType.ALL);  
         this.availableCharsets = new ArrayList<Charset>(Charset.availableCharsets().values());  
     }  
@@ -87,5 +88,5 @@ public class Utf8StringHttpMessageConverter extends
             return DEFAULT_CHARSET;  
         }  
     }  
-
-}
+  
+}  
