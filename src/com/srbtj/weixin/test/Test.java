@@ -23,10 +23,7 @@ public class Test {
 	
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 		
-		String new_msg = "<xml>"+
-					 "<ToUserName><![CDATA[gh_680bdefc8c5d]]></ToUserName>"+
-					 "<Encrypt><![CDATA[MNn4+jJ/VsFh2gUyKAaOJArwEVYCvVmyN0iXzNarP3O6vXzK62ft1/KG2/XPZ4y5bPWU/jfIfQxODRQ7sLkUsrDRqsWimuhIT8Eq+w4E/28m+XDAQKEOjWTQIOp1p6kNsIV1DdC3B+AtcKcKSNAeJDr7x7GHLx5DZYK09qQsYDOjP6R5NqebFjKt/NpEl/GU3gWFwG8LCtRNuIYdK5axbFSfmXbh5CZ6Bk5wSwj5fu5aS90cMAgUhGsxrxZTY562QR6c+3ydXxb+GHI5w+qA+eqJjrQqR7u5hS+1x5sEsA7vS+bZ5LYAR3+PZ243avQkGllQ+rg7a6TeSGDxxhvLw+mxxinyk88BNHkJnyK//hM1k9PuvuLAASdaud4vzRQlAmnYOslZl8CN7gjCjV41skUTZv3wwGPxvEqtm/nf5fQ=]]></Encrypt>"+
-					 "</xml>";
+		String new_msg = "<xml><ToUserName><![CDATA[gh_680bdefc8c5d]]></ToUserName><Encrypt><![CDATA[MNn4+jJ/VsFh2gUyKAaOJArwEVYCvVmyN0iXzNarP3O6vXzK62ft1/KG2/XPZ4y5bPWU/jfIfQxODRQ7sLkUsrDRqsWimuhIT8Eq+w4E/28m+XDAQKEOjWTQIOp1p6kNsIV1DdC3B+AtcKcKSNAeJDr7x7GHLx5DZYK09qQsYDOjP6R5NqebFjKt/NpEl/GU3gWFwG8LCtRNuIYdK5axbFSfmXbh5CZ6Bk5wSwj5fu5aS90cMAgUhGsxrxZTY562QR6c+3ydXxb+GHI5w+qA+eqJjrQqR7u5hS+1x5sEsA7vS+bZ5LYAR3+PZ243avQkGllQ+rg7a6TeSGDxxhvLw+mxxinyk88BNHkJnyK//hM1k9PuvuLAASdaud4vzRQlAmnYOslZl8CN7gjCjV41skUTZv3wwGPxvEqtm/nf5fQ=]]></Encrypt></xml>";
 		
 //		InputStream is = new FileInputStream(xml);
 		
@@ -54,7 +51,7 @@ public class Test {
 //		
 //		System.out.println(reString);
 //		String path = "http://192.168.1.104:8080/weixinProject/weixin";
-		String path = "http://localhost:8888/weixinProject/weixin?signature=35703636de2f9df2a77a662b68e521ce17c34db4&timestamp=1414243737&nonce=1792106704&encrypt_type=aes&msg_signature=6147984331daf7a1a9eed6e0ec3ba69055256154";
+		String path = "http://localhost:8080/weixinProject/weixin?signature=35703636de2f9df2a77a662b68e521ce17c34db4&timestamp=1414243737&nonce=1792106704&encrypt_type=aes&msg_signature=6147984331daf7a1a9eed6e0ec3ba69055256154";
 		/** 为指定参数的post请求  **/
 		HttpClient client = new DefaultHttpClient();
 		HttpPost post = new HttpPost(path);

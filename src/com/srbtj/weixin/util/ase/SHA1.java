@@ -7,7 +7,6 @@
 // ------------------------------------------------------------------------
 
 package com.srbtj.weixin.util.ase;
-
 import java.security.MessageDigest;
 import java.util.Arrays;
 

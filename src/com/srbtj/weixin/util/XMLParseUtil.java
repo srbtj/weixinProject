@@ -10,9 +10,12 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.alibaba.druid.util.IOUtils;
 import com.srbtj.weixin.entity.response.ResponseTextMessage;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.util.QuickWriter;
@@ -139,4 +142,28 @@ public class XMLParseUtil {
         }  
 		});  
 	}
+	
+	/**
+	 *  string --> xml
+	 * @param str
+	 * @return
+	 */
+	
+	public static Map<String, String> stringToXML(String str){
+		
+		Map<String,String> maps = new HashMap<String,String>();
+		
+		try {
+			Document document =DocumentHelper.parseText(str);
+			Element element = document.getRootElement();
+			List<Element> eList = element.elements();
+			for(Element ele : eList){
+				maps.put(ele.getName(), ele.getText());
+			}
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		}
+		return maps;
+	}
+	
 }

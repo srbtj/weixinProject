@@ -7,7 +7,6 @@
 // ------------------------------------------------------------------------
 
 package com.srbtj.weixin.util.ase;
-
 import java.io.StringReader;
 
 import javax.xml.parsers.DocumentBuilder;

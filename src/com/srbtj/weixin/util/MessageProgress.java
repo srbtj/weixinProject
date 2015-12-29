@@ -6,10 +6,16 @@ import com.srbtj.weixin.util.ase.WXBizMsgCrypt;
 public class MessageProgress {
 	/** 令牌 **/
 	private static String TOKEN = "weixinProject";
-	/** 消息加解密密钥 **/
+////	/** 消息加解密密钥 **/
 	private static String ENCODING_AES_KEY = "0XzQJscrOyiaaoeqroRYHPEiYnbnXO69b3LwyLd6sU8";
-	/** 开发者 ID **/
+////	/** 开发者 ID **/
 	private static String APPID = "wxdf4ac816c369227c";
+//	private static String TOKEN = "weixin";
+	/** 消息加解密密钥 **/
+//	private static String ENCODING_AES_KEY = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG";
+	/** 开发者 ID **/
+//	private static String APPID = "wxbad0b45542aa0b5e";
+	
 	
 	private static WXBizMsgCrypt biz  = null;
 	
@@ -23,12 +29,20 @@ public class MessageProgress {
 	
 	/***
 	 *  对明文时行加密 
+	 * @param nonce 
+	 * @param timestamp 
+	 * @param backStr 
 	 * @return  加密后的base64字符串
 	 */
-	public static String encryptMsg(){
+	public static String encryptMsg(String backStr, String timestamp, String nonce){
 		
-	
-		return null;
+		String result = null;
+		try {
+			result =  biz.EncryptMsg(backStr, timestamp, nonce);
+		} catch (AesException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	/**
@@ -43,7 +57,7 @@ public class MessageProgress {
 		
 		String result = null;
 		try {
-			result = biz.decryptMsg(msgSignature, timeStamp, nonce, postData);
+			result = biz.DecryptMsg(msgSignature, timeStamp, nonce, postData);
 		} catch (AesException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
