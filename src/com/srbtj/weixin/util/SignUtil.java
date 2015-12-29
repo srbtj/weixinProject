@@ -35,6 +35,23 @@ public class SignUtil {
 		return digest != null ? signature.equals(digest) : false;
 	}
 	
+	/***
+	 *  消息签名验证
+	 * @param msg_signature
+	 * @param timestamp
+	 * @param nonce
+	 * @param msg_encrypt
+	 * @return
+	 */
+	public static boolean checkMessageSignature(String msg_signature,String timestamp,String nonce,String msg_encrypt){
+		
+		String[] str = new String[]{token,timestamp,nonce,msg_encrypt};
+		Arrays.sort(str);
+		String bigStr = str[0] + str[1] + str[2] + str[3];
+		String digest = new SHA1().getDigestOfString(bigStr.getBytes()).toLowerCase();
+		return digest != null ? msg_signature.equals(digest) : false;
+	}
+	
 	
 	public static Map<String, String> sign(String ticket,String url){
 		

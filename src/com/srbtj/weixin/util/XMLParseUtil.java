@@ -25,6 +25,7 @@ public class XMLParseUtil {
 	/** 扩展标志 **/
 	private static String PREFIX_CDATA="<![CDATA[";
 	private static String SUFFIX_CDATA="]]>";
+	private static XStream xStream = createXStream();
 	
 	/** 接收的消息类型  **/
 	public static String RECEIVE_TEST = "text";  /* 文本 **/
@@ -74,7 +75,11 @@ public class XMLParseUtil {
 	 *  字符串加上 CDATA扩展 
 	 *  float与时间不加任何处理
 	 */
-	private static XStream xStream = new XStream(new XppDriver() {  
+	public static XStream createXStream(){
+		
+	
+		return new XStream(new XppDriver() {  
+	
         public HierarchicalStreamWriter createWriter(Writer out) {  
             return new PrettyPrintWriter(out) {  
                 // 对所有xml节点的转换都增加CDATA标记  
@@ -132,5 +137,6 @@ public class XMLParseUtil {
                 }  
             };  
         }  
-    });  
+		});  
+	}
 }
