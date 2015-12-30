@@ -11,6 +11,8 @@ import net.spy.memcached.MemcachedClient;
 import org.activiti.engine.impl.util.json.JSONObject;
 import org.activiti.engine.impl.util.json.JSONTokener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 
 public class WeixinRequest {
 

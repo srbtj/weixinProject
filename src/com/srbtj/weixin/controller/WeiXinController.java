@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.srbtj.weixin.service.response.ResponseTextMessageServer;
 import com.srbtj.weixin.util.MessageProgress;
 import com.srbtj.weixin.util.SignUtil;
+import com.srbtj.weixin.util.WeixinRequest;
 import com.srbtj.weixin.util.XMLParseUtil;
 
 @Controller
@@ -103,5 +104,24 @@ public class WeiXinController {
 		return responseMessage;
 	}
 	
+	/***
+	 *  String appid,String appsecrect
+	 *  获取 access_token 
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="/getAccessToken",method=RequestMethod.GET)
+	public String getAccessToken() throws IOException{
+		
+//		String token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+//		String request_url = token_url.replace("APPID", appid).replace("APPSECRET", appsecrect);
+		WeixinRequest request = new WeixinRequest();
+		String ticket = request.getWeixinToken();
+		System.out.println(ticket);
+		return null;
+	}
+	
+	/**
+	 *  获取 jsapi_ticket 
+	 */
 	
 }

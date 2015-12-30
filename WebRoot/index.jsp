@@ -19,7 +19,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
   </head>
-  <body>2222</body>
-<script>
-</script>
+  <body>
+  111111
+   <!-- <script>
+  	window.location.href = "http://localhost:8080/weixinProject/WebRoot/html/index.html";
+  </script>  -->
+  </body>
 </html>
