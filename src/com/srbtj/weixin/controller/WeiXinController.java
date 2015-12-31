@@ -109,15 +109,15 @@ public class WeiXinController {
 	 *  获取 access_token 
 	 * @throws IOException 
 	 */
-	@RequestMapping(value="/getAccessToken",method=RequestMethod.GET)
-	public String getAccessToken() throws IOException{
+	@RequestMapping(value="/getAccessTokenAndTicket",method=RequestMethod.GET)
+	public String getAccessTokenAndTicket() throws IOException{
 		
 //		String token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
 //		String request_url = token_url.replace("APPID", appid).replace("APPSECRET", appsecrect);
 		WeixinRequest request = new WeixinRequest();
 		String ticket = request.getWeixinToken();
 		System.out.println(ticket);
-		return null;
+		return ticket;
 	}
 	
 	/**
