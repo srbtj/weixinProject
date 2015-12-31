@@ -79,11 +79,16 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
   
+  <servlet-mapping> 
+	<servlet-name>springMvc</servlet-name> 
+	<url-pattern>*.html</url-pattern> 
+  </servlet-mapping>
   <session-config>
     <session-timeout>1440</session-timeout>
   </session-config>
   
   <welcome-file-list>
+    <welcome-file>/html/index.html</welcome-file>
     <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>
 </web-app>
