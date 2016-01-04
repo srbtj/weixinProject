@@ -117,6 +117,7 @@ public class WeiXinController {
 		WeixinRequest request = new WeixinRequest();
 		String ticket = request.getWeixinToken();
 		System.out.println(ticket);
+	
 		return null;
 	}
 	
