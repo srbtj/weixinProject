@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.srbtj.weixin.dao.TokenTicketMapper">
+	<resultMap type="com.srbtj.weixin.entity.TokenTicket" id="BaseResultMapper">
+		<id property="id" column="id" jdbcType="BIGINT"/>
+		<result property="expires" column="expires" jdbcType="BIGINT"/>
+		<result property="access_token" column="access_token" jdbcType="VARCHAR"/>
+		<result property="ticket" column="ticket" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<select id="queryAllTicket" resultMap="BaseResultMapper">
+		SELECT * FROM token_ticket 
+	</select>
+</mapper>
