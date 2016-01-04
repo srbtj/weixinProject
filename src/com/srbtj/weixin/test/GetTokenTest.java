@@ -12,7 +12,7 @@ import org.apache.http.util.EntityUtils;
 
 public class GetTokenTest {
 
-	private static String url = "http://localhost:8080/weixinProject/getAccessToken";
+	private static String url = "http://localhost:8888/weixinProject/getAccessTokenAndTicket";
 	private static CloseableHttpClient httpClient = HttpClients.createDefault();
 	
 	public static void main(String[] args) throws ParseException, IOException {
@@ -31,6 +31,7 @@ public class GetTokenTest {
 		
 		String result = EntityUtils.toString(response.getEntity());
 		
+		System.out.println(result);
 //		JSONObject json = new JSONObject();
 //		
 //		JSONObject jsonObject = json.

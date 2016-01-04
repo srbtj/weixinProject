@@ -2,15 +2,23 @@ package com.srbtj.weixin.util;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Formatter;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 //import net.spy.memcached.MemcachedClient;
 
@@ -27,7 +35,10 @@ public class WeixinRequest {
 	private static String APPSECRET = "455a80c71906f90b4e34377007dce34a";
 	private static String ACCESSTOKEN = "access_token";
 	private static String TICKET = "ticket";
-	
+	private static String timestamper = "";
+	private static String nonString = "";
+	private static String apiToken = "";
+	private static String apiTicket = "";
 	/** 过期时间 **/
 //	@Autowired
 //	private MemcachedClient memcachedClient; 
@@ -43,8 +54,8 @@ public class WeixinRequest {
 		CachePool pool = CachePool.getInstance();
 //		Object apiToken = memcachedClient.get(ACCESSTOKEN);
 //		Object apiTicket = memcachedClient.get(TICKET);
-		String apiToken = (String) pool.getCacheItem(ACCESSTOKEN);
-		String apiTicket = (String) pool.getCacheItem(TICKET);
+		apiToken = (String) pool.getCacheItem(ACCESSTOKEN);
+		apiTicket = (String) pool.getCacheItem(TICKET);
 //		Object apiExpired;
 		
 		/** 获得系统当前时间的毫秒值  */
@@ -100,7 +111,7 @@ public class WeixinRequest {
 			try {
 				
 				/** 获得 api_ticket **/
-				URL url = new URL("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token="+access_token+"&type=wx_card");
+				URL url = new URL("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token="+access_token+"&type=jsapi");
 				
 				JSONObject jsonObject = getConnection(url);
 				
@@ -113,6 +124,8 @@ public class WeixinRequest {
 				
 				e.printStackTrace();
 			}
+		}else{
+			ticket = apiTicket;
 		}
 		
 		
@@ -128,6 +141,59 @@ public class WeixinRequest {
 		
 		return ticket;
 	}
+	
+	
+	/****
+	 *  生成jssdk签名
+	 */
+	public Map<String, String> getJSSDKSignature(HttpServletRequest request){
+		
+		Map<String,String> maps = new HashMap<String, String>();
+		/** 获得jssdk票据 **/
+		apiTicket = getWeixinToken();
+		timestamper = SignUtil.sign_timerstamp();
+		nonString = SignUtil.sign_nonstr();
+		String url = getUrl(request);
+		String str = "";
+		String signature = "";
+		
+		str = "jsapi_ticket=" + apiTicket +
+                "&noncestr=" + nonString +
+                "&timestamp=" + timestamper +
+                "&url=" + url;
+		
+		MessageDigest crypt = null;
+		try {
+			crypt = MessageDigest.getInstance("SHA-1");
+			crypt.reset();
+			crypt.update(str.getBytes("UTF-8"));
+			signature = byteToHex(crypt.digest());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		maps.put("url", url);
+//		maps.put("jsapi_ticket", apiTicket);
+		maps.put("nonceStr", nonString);
+		maps.put("timestamp", timestamper);
+		maps.put("signature", signature);
+		maps.put("appId", APPID);
+		return maps;
+	}
+	
+	
+	private String getUrl(HttpServletRequest request){
+		
+		StringBuffer sb = request.getRequestURL();
+		
+		String queryString = request.getQueryString();
+		String url = sb+"?"+queryString;
+		return url;
+	}
+	
+	
 	
 	/***
 	 *  发送get请求
@@ -197,4 +263,20 @@ public class WeixinRequest {
 		}
 		return count;
 	}
+	
+	/***
+	 *  
+	 * @param hash
+	 * @return
+	 */
+	private String byteToHex(final byte[] hash) {
+        Formatter formatter = new Formatter();
+        for (byte b : hash)
+        {
+            formatter.format("%02x", b);
+        }
+        String result = formatter.toString();
+        formatter.close();
+        return result;
+    }
 }

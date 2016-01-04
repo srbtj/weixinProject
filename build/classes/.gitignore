@@ -1,2 +1,6 @@
+/applicationContext.xml
 /com/
-/memcached.properties
+/config.properties
+/log4j.properties
+/mybatis-config.xml
+/spring-mvc.xml

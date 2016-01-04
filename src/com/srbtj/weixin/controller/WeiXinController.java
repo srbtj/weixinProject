@@ -104,24 +104,26 @@ public class WeiXinController {
 		return responseMessage;
 	}
 	
-	/***
-	 *  String appid,String appsecrect
-	 *  获取 access_token 
-	 * @throws IOException 
+	/**
+	 *  获得签名算法
+	 * @param request
+	 * @return
+	 * @throws IOException
 	 */
-	@RequestMapping(value="/getAccessTokenAndTicket",method=RequestMethod.GET)
-	public String getAccessTokenAndTicket() throws IOException{
+	@RequestMapping(value="/getAccessTokenAndTicket",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> getAccessTokenAndTicket(HttpServletRequest request) throws IOException{
 		
+		WeixinRequest weixinRequest = new WeixinRequest();
+		Map<String, String> maps = new HashMap<String,String>();
 //		String token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
 //		String request_url = token_url.replace("APPID", appid).replace("APPSECRET", appsecrect);
-		WeixinRequest request = new WeixinRequest();
-		String ticket = request.getWeixinToken();
-		System.out.println(ticket);
-		return ticket;
+		/** 获得jssdk签名 **/
+//		String ticket = request.getWeixinToken();
+//		System.out.println(ticket);
+		
+		maps = weixinRequest.getJSSDKSignature(request);
+		return maps;
 	}
-	
-	/**
-	 *  获取 jsapi_ticket 
-	 */
 	
 }
